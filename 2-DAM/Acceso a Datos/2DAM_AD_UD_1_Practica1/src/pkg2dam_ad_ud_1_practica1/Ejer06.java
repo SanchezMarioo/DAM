@@ -24,19 +24,16 @@ public class Ejer06 {
             System.out.println("[" + archivo.getName() + "]:");
             if (archivo.isDirectory()) {
                 String archivosRuta[] = archivo.list();
-                for (String string : archivosRuta) {
-                    String partes[] = string.split(".");
-                    int longitud = partes.length;
-                    String extension = partes[longitud];
-                    if(extension != "txt"){
-                        System.out.println(string);
+                for (String archivoDirectorio : archivosRuta) {
+                    if (archivoDirectorio.endsWith(".txt")) {
+                        System.out.println(archivoDirectorio);
                     }
                 }
+
             } else {
                 System.out.println("- " + archivo.getName());
             }
-
         }
+
     }
 }
-
