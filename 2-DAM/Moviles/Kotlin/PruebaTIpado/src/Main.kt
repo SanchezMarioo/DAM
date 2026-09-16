@@ -1,11 +1,12 @@
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
-    println("Dime un nombre: ")
-    var nombre = readln()
-    println("Dime la edad: ")
-    var edad= readln().toIntOrNull()
+    val edad = 19
 
-    println("Mi nombre es $nombre y tengo $edad")
+    if (edad is Int) {
+        println("Edad valida")
+    } else {
+        println("Edad no es valida")
+    }
 
 }
