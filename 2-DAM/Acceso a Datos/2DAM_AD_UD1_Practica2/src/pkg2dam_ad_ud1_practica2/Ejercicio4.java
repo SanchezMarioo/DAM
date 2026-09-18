@@ -19,6 +19,7 @@ import java.util.Scanner;
 public class Ejercicio4 {
 
     private static final String RUTA_FICHERO = "datos.txt";
+    private static Scanner sc;
 
     /**
      * @param args the command line arguments
@@ -26,34 +27,123 @@ public class Ejercicio4 {
     public static void main(String[] args) {
         // TODO code application logic here
 
-        Scanner sc = null;
-
         try {
             sc = new Scanner(System.in);
-            registrarDatosUsuario(sc);
-            mostrarContenidoFichero();
+            do {
+                mostrarMenu();
+                int opcion = pedirEntero(sc, "Dime una opcion: ");
+                if(opcion == 5){
+                    break;
+                }
+                funcionalidadMenu(opcion);
+            } while (true);
+
         } finally {
             if (sc != null) {
                 sc.close();
             }
         }
     }
-    private static vo
+
+    public static void mostrarMenu() {
+        System.out.println("");
+        System.out.println("=========================================");
+        System.out.println("1. Mostrar todos los usuarios");
+        System.out.println("2. Solo N primeros");
+        System.out.println("3. Buscar por DNI");
+        System.out.println("4. Registrar una persona");
+        System.out.println("5. Salir");
+        System.out.println("=========================================");
+        System.out.println("");
+    }
+
+    public static void funcionalidadMenu(int opcion) {
+        switch (opcion) {
+            case 1 -> {
+                mostrarTodoContenidoFichero();
+            }
+            case 2 -> {
+                int numero = pedirEntero(sc, "Dime cuantas personas vas a ver: ");
+                mostrarDatosPorNumero(numero);
+            }
+            case 3 -> {
+                String dni = pedirCadena(sc, "Dime el DNI de la persona a buscar: ");
+                mostrarDatosPorNumero(dni);
+            }
+            case 4 -> {
+                registrarDatosUsuario(sc);
+            }
+            case 5 -> {
+                System.out.println("Cerrando el programa... ");
+            }
+        }
+    }
+
     private static void registrarDatosUsuario(Scanner sc) {
         String dni = pedirCadena(sc, "Dime el DNI: ");
-        escribirFichero("DNI: " + dni);
-
         String nombre = pedirCadena(sc, "Dime el nombre: ");
-        escribirFichero("Nombre: " + nombre);
-
         String apellidos = pedirCadena(sc, "Dime los apellidos: ");
-        escribirFichero("Apellidos: " + apellidos);
-
         String fechaNacimiento = pedirCadena(sc, "Dime la fecha de nacimiento: ");
-        escribirFichero("Fecha de nacimiento: " + fechaNacimiento);
-
         int telefono = pedirEntero(sc, "Dime el teléfono: ");
-        escribirFichero("Teléfono: " + telefono);
+
+        // Se arma el registro completo en un único String
+        String registroUsuario = String.format("DNI: %s | Nombre: %s | Apellidos: %s | Fecha Nacimiento: %s | Tel: %d",
+                dni, nombre, apellidos, fechaNacimiento, telefono);
+
+        escribirFichero(registroUsuario);
+
+    }
+
+    public static void mostrarDatosPorNumero(int numeroDatos) {
+        System.out.println("\n--- Contenido del fichero de  " + numeroDatos + " personas ---");
+        int contadorPersonas = 0;
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new FileReader(RUTA_FICHERO));
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                if (numeroDatos == contadorPersonas) {
+                    break;
+                }
+                contadorPersonas++;
+                System.out.println(linea);
+            }
+        } catch (IOException e) {
+            System.err.println("Error al leer: " + e.getMessage());
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    System.err.println("Error al cerrar el lector: " + e.getMessage());
+                }
+            }
+        }
+    }
+
+    public static void mostrarDatosPorNumero(String dni) {
+        System.out.println("\n--- Contenido del fichero con el DNI  " + dni + " personas ---");
+
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new FileReader(RUTA_FICHERO));
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                if (linea.contains(dni)) {
+                    System.out.println(linea);
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error al leer: " + e.getMessage());
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    System.err.println("Error al cerrar el lector: " + e.getMessage());
+                }
+            }
+        }
     }
 
     private static String pedirCadena(Scanner sc, String mensaje) {
@@ -80,15 +170,21 @@ public class Ejercicio4 {
         try {
             bw = new BufferedWriter(new FileWriter(RUTA_FICHERO, true));
             bw.write(texto);
-            bw.newLine();
+
         } catch (IOException e) {
             System.err.println("Error al escribir: " + e.getMessage());
         } finally {
-            cerrarRecurso(bw);
+            if (bw != null) {
+                try {
+                    bw.close();
+                } catch (IOException e) {
+                    System.err.println("Error al cerrar el escritor: " + e.getMessage());
+                }
+            }
         }
     }
 
-    public static void mostrarContenidoFichero() {
+    public static void mostrarTodoContenidoFichero() {
         System.out.println("\n--- Contenido del fichero ---");
         BufferedReader br = null;
         try {
@@ -100,16 +196,12 @@ public class Ejercicio4 {
         } catch (IOException e) {
             System.err.println("Error al leer: " + e.getMessage());
         } finally {
-            cerrarRecurso(br);
-        }
-    }
-
-    private static void cerrarRecurso(AutoCloseable recurso) {
-        if (recurso != null) {
-            try {
-                recurso.close();
-            } catch (Exception e) {
-                System.err.println("Error al cerrar el flujo: " + e.getMessage());
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    System.err.println("Error al cerrar el lector: " + e.getMessage());
+                }
             }
         }
     }

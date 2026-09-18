@@ -1,10 +1,9 @@
-DNI7234433
-Nombreadf
-Apellidosasfd
-Fecha de nacimientodsaf
-Telefono: 2112312
-DNI71070399P
-Nombre: Mario
-Apellidos: Sanchez
-Fecha de nacimiento: 2/12/2006
-Telefono: 213213
+DNI: 71070399P | Nombre: Mario | Apellidos: Sanchez | Fecha Nac: 2/12/2006 | Tel: 644608691
+DNI: 71070399P | Nombre: Mario | Apellidos: Sanchez | Fecha Nac: 2/12/2006 | Tel: 644608691
+DNI: 71070399P | Nombre: Mario | Apellidos: Sanchez | Fecha Nac: 2/12/2006 | Tel: 644608691
+DNI: 71070399P | Nombre: Mario | Apellidos: Sanchez | Fecha Nac: 2/12/2006 | Tel: 644608691
+DNI: 71070399P | Nombre: Mario | Apellidos: Sanchez | Fecha Nac: 2/12/2006 | Tel: 644608691
+DNI: 71070399P | Nombre: Mario | Apellidos: Sanchez | Fecha Nac: 2/12/2006 | Tel: 644608691
+DNI: 71070399P | Nombre: Mario | Apellidos: Sanchez | Fecha Nac: 2/12/2006 | Tel: 644608691
+DNI: 71070399P | Nombre: Mario | Apellidos: Sanchez | Fecha Nac: 2/12/2006 | Tel: 644608691
+DNI: 123456789A | Nombre: Mario | Apellidos: Sanchez | Fecha Nacimiento: 2/12/2006 | Tel: 644608691
