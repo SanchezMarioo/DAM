@@ -69,7 +69,7 @@ public class Vuelo implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("[ID: %02d] %-12s | %-12s -> %-12s | %7.2f €",
+        return String.format("[ID: %s] %-12s | %-12s -> %-12s | %7.2f €",
                 numeroVuelo, compañiaAerea, origenVuelo, destinoVuelo, precio);
     }
 }

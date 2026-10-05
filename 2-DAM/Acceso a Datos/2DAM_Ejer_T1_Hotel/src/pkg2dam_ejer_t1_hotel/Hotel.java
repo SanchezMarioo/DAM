@@ -56,5 +56,10 @@ public class Hotel implements Serializable {
     public void setPrecioNoche(double precioNoche) {
         this.precioNoche = precioNoche;
     }
+
+    @Override
+    public String toString() {
+        return "Hotel{" + "nombre=" + nombre + ", descripcion=" + descripcion + ", ciudad=" + ciudad + ", precioNoche=" + precioNoche + '}';
+    }
    
 }
