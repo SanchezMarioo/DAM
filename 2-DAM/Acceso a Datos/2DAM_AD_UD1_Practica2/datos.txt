@@ -1,9 +1,2 @@
-DNI: 71070399P | Nombre: Mario | Apellidos: Sanchez | Fecha Nac: 2/12/2006 | Tel: 644608691
-DNI: 71070399P | Nombre: Mario | Apellidos: Sanchez | Fecha Nac: 2/12/2006 | Tel: 644608691
-DNI: 71070399P | Nombre: Mario | Apellidos: Sanchez | Fecha Nac: 2/12/2006 | Tel: 644608691
-DNI: 71070399P | Nombre: Mario | Apellidos: Sanchez | Fecha Nac: 2/12/2006 | Tel: 644608691
-DNI: 71070399P | Nombre: Mario | Apellidos: Sanchez | Fecha Nac: 2/12/2006 | Tel: 644608691
-DNI: 71070399P | Nombre: Mario | Apellidos: Sanchez | Fecha Nac: 2/12/2006 | Tel: 644608691
-DNI: 71070399P | Nombre: Mario | Apellidos: Sanchez | Fecha Nac: 2/12/2006 | Tel: 644608691
-DNI: 71070399P | Nombre: Mario | Apellidos: Sanchez | Fecha Nac: 2/12/2006 | Tel: 644608691
-DNI: 123456789A | Nombre: Mario | Apellidos: Sanchez | Fecha Nacimiento: 2/12/2006 | Tel: 644608691
+DNI: Mario | Nombre: mARIO | Apellidos: SANCHEZ | Fecha Nacimiento: 2/12/206 | Tel: 644608691
+DNI: 71070399p | Nombre: Alberto | Apellidos: Gonzalez | Fecha Nacimiento: 2/12/20067 | Tel: 644608691

@@ -23,83 +23,74 @@ public class Ejercicio2 {
     /**
      * @param args the command line arguments
      */
-    public static Scanner sc;
-    public static final String FICHERO_NUMEROS = "numeros.txt";
     public static void main(String[] args) {
         // TODO code application logic here
-        int numero;
+        int numero = 0;
+        Scanner sc = new Scanner(System.in);
         do {
-            numero = pedirEntero(sc, "Dime un numero: ");
-
-            if (numero == 0) {
-                int total = sumarNumerosFichero();
-                System.out.println("La suma es: " + total);
-            } else {
-                escribirNumero(numero);
-            }
-        } while (numero != 0);
-    }
-
-    private static int pedirEntero(Scanner sc, String mensaje) {
-        while (true) {
-            System.out.print(mensaje);
+            System.out.println("Dime un numero: ");
             try {
-                int valor = sc.nextInt();
-                sc.nextLine(); // Limpia el salto de línea sobrante
-                return valor;
+                numero = sc.nextInt();
+                sc.nextLine();
+                if (numero == 0) {
+                    System.out.println("La suma es: " + leerArchivo());
+                    break;
+
+                }
+                escribirNumero(numero);
             } catch (InputMismatchException ex) {
-                System.err.println("Error: Introduce un número entero válido.");
-                sc.nextLine(); // Limpia el valor erróneo del buffer
+                System.out.println(ex.getMessage());
+                sc.nextLine();
             }
-        }
+        } while (true);
+
     }
 
-    private static void escribirNumero(int numero) {
+    static void escribirNumero(int numero) {
         BufferedWriter bw = null;
         try {
-            bw = new BufferedWriter(new FileWriter(FICHERO_NUMEROS, true));
+            bw = new BufferedWriter(new FileWriter("numeros.txt", true));
             bw.write(String.valueOf(numero));
             bw.newLine();
+
         } catch (IOException ex) {
-            System.err.println("Error al escribir en el fichero: " + ex.getMessage());
+            System.out.println(ex.getMessage());
         } finally {
             if (bw != null) {
                 try {
                     bw.close();
                 } catch (IOException ex) {
-                    System.err.println("Error al cerrar el escritor: " + ex.getMessage());
+                    System.out.println(ex.getMessage());
                 }
             }
         }
     }
 
-    private static int sumarNumerosFichero() {
+    static int leerArchivo() {
         BufferedReader br = null;
+        String linea = "";
         int suma = 0;
-
         try {
-            br = new BufferedReader(new FileReader(FICHERO_NUMEROS));
-            String linea;
+            br = new BufferedReader(new FileReader("numeros.txt"));
             while ((linea = br.readLine()) != null) {
                 linea = linea.trim();
                 if (!linea.isEmpty()) {
-                    try {
-                        suma += Integer.parseInt(linea);
-                    } catch (NumberFormatException ex) {
-                        System.err.println("Línea ignorada (no es un entero): '" + linea + "'");
-                    }
+                    int numero = Integer.parseInt(linea);
+                    suma += numero;
                 }
+
             }
         } catch (FileNotFoundException ex) {
-            System.err.println("El fichero no existe todavía: " + ex.getMessage());
+            System.out.println(ex.getMessage());
         } catch (IOException ex) {
-            System.err.println("Error al leer el fichero: " + ex.getMessage());
+            System.out.println(ex.getMessage());
         } finally {
             if (br != null) {
                 try {
                     br.close();
                 } catch (IOException ex) {
-                    System.err.println("Error al cerrar el lector: " + ex.getMessage());
+                    System.out.println(ex.getMessage());
+
                 }
             }
         }

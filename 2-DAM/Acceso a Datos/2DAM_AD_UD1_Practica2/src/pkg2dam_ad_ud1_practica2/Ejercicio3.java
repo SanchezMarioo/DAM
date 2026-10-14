@@ -37,7 +37,6 @@ public class Ejercicio3 {
     static String pedirDatos(String msg) {
         Scanner sc = new Scanner(System.in);
         System.out.println(msg);
-
         try {
             return sc.nextLine();
         } catch (Exception e) {
@@ -75,8 +74,6 @@ public class Ejercicio3 {
         BufferedWriter bw = null;
         try {
             bw = new BufferedWriter(new FileWriter("correos.txt", true));
-            
-            
             bw.write("Destinario: " + destinatario);
             bw.newLine();
             bw.write("Asunto: " + destinatario);

@@ -32,7 +32,7 @@ public class Ejercicio4 {
             do {
                 mostrarMenu();
                 int opcion = pedirEntero(sc, "Dime una opcion: ");
-                if(opcion == 5){
+                if (opcion == 5) {
                     break;
                 }
                 funcionalidadMenu(opcion);
@@ -46,6 +46,7 @@ public class Ejercicio4 {
     }
 
     public static void mostrarMenu() {
+        // 
         System.out.println("");
         System.out.println("=========================================");
         System.out.println("1. Mostrar todos los usuarios");
@@ -79,32 +80,67 @@ public class Ejercicio4 {
         }
     }
 
+    public static boolean existeDNI(String dni) {
+
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new FileReader(RUTA_FICHERO));
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                if (linea.contains(dni)) {
+                    return true;
+                }
+            }
+
+        } catch (IOException e) {
+            System.err.println("Error al leer: " + e.getMessage());
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    System.err.println("Error al cerrar el lector: " + e.getMessage());
+                }
+            }
+        }
+        return false;
+    }
+
     private static void registrarDatosUsuario(Scanner sc) {
-        String dni = pedirCadena(sc, "Dime el DNI: ");
+        String dni = "";
+        do {
+
+            dni = pedirCadena(sc, "Dime el DNI: ");
+            if (existeDNI(dni)) {
+                System.out.println("El DNI esta repetido.");
+            }
+
+        } while (existeDNI(dni));
+
         String nombre = pedirCadena(sc, "Dime el nombre: ");
         String apellidos = pedirCadena(sc, "Dime los apellidos: ");
         String fechaNacimiento = pedirCadena(sc, "Dime la fecha de nacimiento: ");
         int telefono = pedirEntero(sc, "Dime el teléfono: ");
 
-        // Se arma el registro completo en un único String
-        String registroUsuario = String.format("DNI: %s | Nombre: %s | Apellidos: %s | Fecha Nacimiento: %s | Tel: %d",
-                dni, nombre, apellidos, fechaNacimiento, telefono);
+        Persona persona = new Persona(dni, nombre, apellidos, fechaNacimiento, telefono);
 
-        escribirFichero(registroUsuario);
+        escribirFichero(persona);
 
     }
 
-    public static void mostrarDatosPorNumero(int numeroDatos) {
-        System.out.println("\n--- Contenido del fichero de  " + numeroDatos + " personas ---");
+    public static void mostrarDatosPorNumero(int numeroPersonas) {
+        System.out.println("\n--- Contenido del fichero de  " + numeroPersonas + " personas ---");
         int contadorPersonas = 0;
         BufferedReader br = null;
         try {
             br = new BufferedReader(new FileReader(RUTA_FICHERO));
             String linea;
             while ((linea = br.readLine()) != null) {
-                if (numeroDatos == contadorPersonas) {
+                // Si igual el numero de personas y el contador de lineas se para el while
+                if (numeroPersonas == contadorPersonas) {
                     break;
                 }
+                // Se aumenta en uno por cada linea 
                 contadorPersonas++;
                 System.out.println(linea);
             }
@@ -129,6 +165,7 @@ public class Ejercicio4 {
             br = new BufferedReader(new FileReader(RUTA_FICHERO));
             String linea;
             while ((linea = br.readLine()) != null) {
+                // Si en la linea contiene el dni se ve  
                 if (linea.contains(dni)) {
                     System.out.println(linea);
                 }
@@ -165,11 +202,12 @@ public class Ejercicio4 {
         }
     }
 
-    public static void escribirFichero(String texto) {
+    public static void escribirFichero(Persona persona) {
         BufferedWriter bw = null;
         try {
             bw = new BufferedWriter(new FileWriter(RUTA_FICHERO, true));
-            bw.write(texto);
+            bw.write(persona.toLineaFichero());
+            bw.newLine();
 
         } catch (IOException e) {
             System.err.println("Error al escribir: " + e.getMessage());
@@ -192,6 +230,7 @@ public class Ejercicio4 {
             String linea;
             while ((linea = br.readLine()) != null) {
                 System.out.println(linea);
+                System.out.println("");
             }
         } catch (IOException e) {
             System.err.println("Error al leer: " + e.getMessage());
@@ -204,5 +243,28 @@ public class Ejercicio4 {
                 }
             }
         }
+    }
+
+}
+
+class Persona {
+
+    private String dni;
+    private String nombre;
+    private String apellidos;
+    private String fechaNacimiento;
+    private int telefono;
+
+    public Persona(String dni, String nombre, String apellidos, String fechaNacimiento, int telefono) {
+        this.dni = dni;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.fechaNacimiento = fechaNacimiento;
+        this.telefono = telefono;
+    }
+
+    public String toLineaFichero() {
+        return String.format("DNI: %s | Nombre: %s | Apellidos: %s | Fecha Nacimiento: %s | Tel: %d",
+                dni, nombre, apellidos, fechaNacimiento, telefono);
     }
 }

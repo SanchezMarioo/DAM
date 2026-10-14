@@ -1,15 +1,28 @@
 class CuentaBancaria(
     val titular: String,
     val numeroCuenta: String,
-    saldoInicial: Double = 0.0,
+
 ) {
-    var saldo: Double = saldoInicial
+    var saldo: Double = 0.0
         private set
 
     init {
-        require(saldoInicial >= 0) { "El saldo inicial no puede ser negativo" }
+        if (saldo <= 0) {
+            println("El saldo inicial no puede ser negativo")
+        }
         println("Cuenta $numeroCuenta creada correctamente para $titular")
         println("Saldo inicial $saldo")
+    }
+    constructor(
+        titular: String,
+        numeroCuenta: String,
+        saldoInicial: Double
+    ) : this(titular,numeroCuenta){
+        if(saldoInicial <= 0) {
+            println("El saldo inicial no puede ser negativo")
+            return
+        }
+        saldo = saldoInicial
     }
 
     fun ingresar(cantidad: Double): Boolean {

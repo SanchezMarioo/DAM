@@ -1,5 +1,5 @@
 fun main() {
-    var reservaHoteles = mutableListOf<Reserva>()
+    val reservaHoteles = mutableListOf<Reserva>()
     var opt = 0;
     do {
         mostrarMenu()
@@ -34,14 +34,15 @@ fun duplicarReserva(reservaHoteles: MutableList<Reserva>) {
 }
 
 fun mostrarReservas(reservaHoteles: MutableList<Reserva>) {
-    var nombreReserva: String
-    if(comprobarSiEstaVacio(reservaHoteles)){
+
+    if (comprobarSiEstaVacio(reservaHoteles)) {
         println("No hay reservas disponibles")
         return
     }
     for (reserva in reservaHoteles) {
         val total = reserva.precioNoche * reserva.noches
-        var cadena = String.format("Hab. ${reserva.habitacion} | ${reserva.cliente} | ${reserva.noches} noches | Total: $total €")
+        var cadena =
+            String.format("Hab. ${reserva.habitacion} | ${reserva.cliente} | ${reserva.noches} noches | Total: $total €")
         println(cadena)
     }
 }
@@ -54,35 +55,33 @@ fun comprobarSiEstaVacio(reservaHoteles: MutableList<Reserva>): Boolean {
 fun buscarReservasPorCliente(reservaHoteles: MutableList<Reserva>) {
     val nombreReserva: String = pedirCadena("Indique el nombre del reservante: ")
     var existeCliente: Boolean = false
-    if(comprobarSiEstaVacio(reservaHoteles)){
+    if (comprobarSiEstaVacio(reservaHoteles)) {
         println("No hay reservas disponibles")
         return
     }
-    for (reserva in reservaHoteles) {
-        if (nombreReserva == reserva.cliente) {
-            val total = reserva.precioNoche * reserva.noches
-            println(String.format("Hab. ${reserva.habitacion} | ${reserva.cliente} | ${reserva.noches} noches | Total: $total €"))
-            existeCliente = true
-        }
+    val reserva = reservaHoteles.filter { it.cliente == nombreReserva }
+    if (comprobarSiEstaVacio(reserva as MutableList<Reserva>)) {
+        println("No hay reservas disponibles")
+        return
     }
-    if (!existeCliente) {
-        println("El cliente $nombreReserva no tiene ninguna reserva")
+    for (reservaNombre in reserva) {
+        println(reserva)
     }
 
 }
+
 fun buscarReservasMayores(reservaHoteles: MutableList<Reserva>) {
-    if(comprobarSiEstaVacio(reservaHoteles)){
+    if (comprobarSiEstaVacio(reservaHoteles)) {
         println("No hay reservas disponibles")
         return
     }
     val reservaMayor = reservaHoteles.filter { reserva -> reserva.precioNoche * reserva.noches > 300 }
-    if(reservaMayor.isEmpty()) {
+    if (reservaMayor.isEmpty()) {
         println("No hay reservas disponibles")
         return
     }
     for (reservaMayor in reservaMayor) {
-        val total = reservaMayor.precioNoche * reservaMayor.noches
-        println(String.format("Hab. ${reservaMayor.habitacion} | ${reservaMayor.cliente} | ${reservaMayor.noches} noches | Total: $total €"))
+        println(reservaMayor)
     }
 }
 
@@ -93,7 +92,7 @@ fun reservarHabitacion(hoteles: MutableList<Reserva>) {
     val noches = pedirNumeroEntreRangos("Noches: ", 1, 30)
     val precioNoche = pedirNumeroDecimalEntreRangos("Precio por noche: ", 0)
 
-    hoteles.add(Reserva(cliente = cliente, habitacion = habitacion, noches, precioNoche))
+    hoteles.add(Reserva(cliente, habitacion, noches, precioNoche))
     println("Habitacion creada correctamente. ")
 }
 
