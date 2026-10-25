@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">AdivinaElNumero</string>
+    <string name="numeroEsMayor">El número secreto es MAYOR</string>
+    <string name="numeroEsMenor">El número secreto es MENOR\n</string>
+    <string name="textoPorDefecto">Selecciona un número y comprueba\n</string>
+    <string name="ganaste">¡Enhorabuena! Has ganado\n\n</string>
+    <string name="perdiste">¡Has perdido! Intentalo de nuevo</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.adivinaelnumero
 
+import android.R.attr.onClick
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -12,7 +13,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -21,13 +21,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.adivinaelnumero.ui.theme.AdivinaElNumeroTheme
 
 class MainActivity : ComponentActivity() {
-    val MIN = 0
+    val MIN = 1
     val MAX = 10
     val INTENTOS = 5
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,51 +50,95 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     fun HomeScreen(modifier: Modifier = Modifier) {
-        var contador by remember { mutableStateOf(5) }
+        var numeroUsuario by remember { mutableStateOf(5) }
         var intentos by remember { mutableStateOf(INTENTOS) }
-        var numeroAleatorio by remember { mutableStateOf ((MIN..MAX).random()) }
+        var numeroSecreto by remember { mutableStateOf((MIN..MAX).random()) }
+        var eleccionTexto by remember { mutableStateOf(0) }
+
+        var texto = when (eleccionTexto) {
+            0 -> R.string.textoPorDefecto
+            1 -> R.string.numeroEsMayor
+            2 -> R.string.numeroEsMenor
+            3 -> R.string.ganaste
+            4 -> R.string.perdiste
+            else -> R.string.textoPorDefecto
+        }
+        var color = when (eleccionTexto) {
+            3 -> Color.Green
+            4 -> Color.Red
+            else -> Color.Black
+        }
         Column(
             modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            Text(text = "$numeroSecreto")
             Text(text = "ADIVINA EL NUMERO", fontSize = 36.sp)
             Spacer(modifier.padding(5.dp))
             Text(text = "Numero entre 1 y 10 ", fontSize = 18.sp)
             Spacer(modifier.padding(10.dp))
             Row(modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
                 Button(
-                    onClick = { contador-- }, enabled =
-                        if (contador <= 0) false
+                    onClick = { numeroUsuario-- }, enabled =
+                        if (numeroUsuario <= 0) false
                         else true
                 ) {
                     Text("-")
                 }
                 Spacer(modifier.padding(horizontal = 10.dp))
-                Text("$contador", fontSize = 36.sp)
+                Text("$numeroUsuario", fontSize = 36.sp)
                 Spacer(modifier.padding(horizontal = 10.dp))
                 Button(
-                    onClick = { contador++ }, enabled =
-                        if (contador >= 10) false
+                    onClick = { numeroUsuario++ }, enabled =
+                        if (numeroUsuario >= 10) false
                         else true
                 ) {
                     Text("+")
                 }
 
             }
+
             Spacer(modifier.padding(10.dp))
             Text("Intentos restantes: $intentos")
             Spacer(modifier.padding(10.dp))
-            Button(onClick = {}) {
-                Text("Comprobar")
+            Button(
+                onClick = {
+                    if (numeroUsuario == numeroSecreto) {
+                        eleccionTexto = 3
+                    } else {
+                        intentos--
+                        if (numeroUsuario < numeroSecreto) {
+                            eleccionTexto = 1
+                        } else if (numeroUsuario > numeroSecreto) {
+                            eleccionTexto = 2
+                        }
+                        if (intentos == 0) {
+                            eleccionTexto = 4
+                        }
+                    }
+
+
+                }, enabled = (eleccionTexto != 3 && intentos > 0)
+            ) {
+                Text("Comprueba")
             }
+
             Spacer(modifier.padding(10.dp))
-            Text("Selecciona un número y comprueba")
-            Spacer(modifier.padding(10.dp))
-            Button(onClick = {}) {
+
+            Text(stringResource(texto), color = color)
+
+            Spacer(modifier.padding(4.dp))
+            Button(onClick = {
+                numeroSecreto = ((MIN..MAX).random())
+                eleccionTexto = 0
+                intentos = INTENTOS
+                numeroUsuario = 5
+            }) {
                 Text("Nueva Partida")
             }
         }
     }
 }
+
 
