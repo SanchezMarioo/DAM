@@ -31,6 +31,7 @@ import com.example.adivinaelnumero.ui.theme.AdivinaElNumeroTheme
 class MainActivity : ComponentActivity() {
     val MIN = 1
     val MAX = 10
+    val NUMERO_INCIAL = 5
     val INTENTOS = 5
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,10 +51,11 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     fun HomeScreen(modifier: Modifier = Modifier) {
-        var numeroUsuario by remember { mutableStateOf(5) }
+        var numeroUsuario by remember { mutableStateOf(NUMERO_INCIAL) }
         var intentos by remember { mutableStateOf(INTENTOS) }
         var numeroSecreto by remember { mutableStateOf((MIN..MAX).random()) }
         var eleccionTexto by remember { mutableStateOf(0) }
+        var ganaste by remember { mutableStateOf(false) }
 
         var texto = when (eleccionTexto) {
             0 -> R.string.textoPorDefecto
@@ -81,8 +83,8 @@ class MainActivity : ComponentActivity() {
             Row(modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
                 Button(
                     onClick = { numeroUsuario-- }, enabled =
-                        if (numeroUsuario <= 0) false
-                        else true
+                        numeroUsuario <= 0 || ganaste
+
                 ) {
                     Text("-")
                 }
@@ -91,8 +93,8 @@ class MainActivity : ComponentActivity() {
                 Spacer(modifier.padding(horizontal = 10.dp))
                 Button(
                     onClick = { numeroUsuario++ }, enabled =
-                        if (numeroUsuario >= 10) false
-                        else true
+                        numeroUsuario >= 10 || ganaste
+
                 ) {
                     Text("+")
                 }
@@ -106,19 +108,17 @@ class MainActivity : ComponentActivity() {
                 onClick = {
                     if (numeroUsuario == numeroSecreto) {
                         eleccionTexto = 3
+                        ganaste = true
                     } else {
                         intentos--
                         if (numeroUsuario < numeroSecreto) {
                             eleccionTexto = 1
-                        } else if (numeroUsuario > numeroSecreto) {
-                            eleccionTexto = 2
                         }
                         if (intentos == 0) {
                             eleccionTexto = 4
+                            ganaste = true
                         }
                     }
-
-
                 }, enabled = (eleccionTexto != 3 && intentos > 0)
             ) {
                 Text("Comprueba")
