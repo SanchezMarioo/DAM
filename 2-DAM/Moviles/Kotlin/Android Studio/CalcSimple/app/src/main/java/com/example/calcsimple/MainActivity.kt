@@ -112,25 +112,25 @@ fun Calculadora(modifier: Modifier = Modifier) {
         Spacer(Modifier.padding(16.dp))
         Row(modifier.padding(16.dp)) {
             Button(onClick = { enviarDatos(num1, num2, "sum") }, Modifier.weight(0.5f)) {
-                Text("Suma")
+                Text("+")
             }
             Spacer(modifier.padding(horizontal = 8.dp))
             Button(onClick = {
                 enviarDatos(num1, num2, "res")
             }, Modifier.weight(0.5f)) {
-                Text("Resta")
+                Text("-")
             }
 
 
         }
         Row(modifier.padding(16.dp)) {
             Button(onClick = { enviarDatos(num1, num2, "mul") }, Modifier.weight(0.5f)) {
-                Text("Multiplicacion")
+                Text("*")
             }
             Spacer(modifier.padding(horizontal = 8.dp))
 
             Button(onClick = { enviarDatos(num1, num2, "divi") }, Modifier.weight(0.5f)) {
-                Text("Division")
+                Text("/")
             }
         }
         if (resultado != null) {

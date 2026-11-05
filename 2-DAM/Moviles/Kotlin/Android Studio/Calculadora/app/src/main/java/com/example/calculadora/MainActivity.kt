@@ -13,10 +13,10 @@ import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -61,9 +61,10 @@ fun CalculadoraApp(modifier: Modifier = Modifier) {
             mutableStateOf("")
         }
         ResultCalculator(numero = numero)
-        RowNumber(onNumberClick = { nuevoNumero ->
-            numero += nuevoNumero
-        }
+        RowNumber(onNumberClick = {
+            nuevoNumero ->
+                numero = nuevoNumero
+            }
         )
     }
 
@@ -80,83 +81,43 @@ fun ResultCalculator(modifier: Modifier = Modifier, numero: String = "") {
 
 @Composable
 fun RowNumber(
-    modifier: Modifier = Modifier, onNumberClick: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    onNumberClick: (String) -> Unit,
 ) {
     Column(
         modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        LazyRow() {
-            item {
-                ItemIconCalculator(R.drawable.backspace_icon, color = LightGray)
-            }
-            item {
-                ItemIconCalculator(R.drawable.keyboard_backspace, color = LightGray)
-            }
-            item {
-                ItemNumberCalculator("%", onNumberClick = onNumberClick)
-            }
-            item {
-                ItemIconCalculator(R.drawable.division, color = Orange)
-            }
+        Row {
+            ItemIconCalculator(R.drawable.backspace_icon, color = LightGray)
+            ItemIconCalculator(R.drawable.keyboard_backspace, color = LightGray)
+            ItemNumberCalculator("%", onNumberClick = onNumberClick)
+            ItemIconCalculator(R.drawable.division, color = Orange)
         }
-        LazyRow() {
-            item {
-                ItemNumberCalculator("7", onNumberClick = onNumberClick)
-            }
-            item {
-                ItemNumberCalculator("8", onNumberClick = onNumberClick)
-            }
-            item {
-                ItemNumberCalculator("9", onNumberClick = onNumberClick)
-            }
-            item {
-                ItemNumberCalculator("x", color = Orange, onNumberClick = onNumberClick)
-            }
+        Row {
+            ItemNumberCalculator("7", onNumberClick = onNumberClick)
+            ItemNumberCalculator("8", onNumberClick = onNumberClick)
+            ItemNumberCalculator("9", onNumberClick = onNumberClick)
+            ItemNumberCalculator("x", color = Orange, onNumberClick = onNumberClick)
         }
-        LazyRow() {
-            item {
-                ItemNumberCalculator("4", onNumberClick = onNumberClick)
-            }
-            item {
-                ItemNumberCalculator("5", onNumberClick = onNumberClick)
-            }
-            item {
-                ItemNumberCalculator("6", onNumberClick = onNumberClick)
-            }
-            item {
-                ItemNumberCalculator("-", color = Orange, onNumberClick = onNumberClick)
-            }
+        Row {
+            ItemNumberCalculator("4", onNumberClick = onNumberClick)
+            ItemNumberCalculator("5", onNumberClick = onNumberClick)
+            ItemNumberCalculator("6", onNumberClick = onNumberClick)
+            ItemNumberCalculator("-", color = Orange, onNumberClick = onNumberClick)
         }
-
-        LazyRow() {
-            item {
-                ItemNumberCalculator("1", onNumberClick = onNumberClick)
-            }
-            item {
-                ItemNumberCalculator("2", onNumberClick = onNumberClick)
-            }
-            item {
-                ItemNumberCalculator("3", onNumberClick = onNumberClick)
-            }
-            item {
-                ItemNumberCalculator("+", color = Orange, onNumberClick = onNumberClick)
-            }
+        Row {
+            ItemNumberCalculator("1", onNumberClick = onNumberClick)
+            ItemNumberCalculator("2", onNumberClick = onNumberClick)
+            ItemNumberCalculator("3", onNumberClick = onNumberClick)
+            ItemNumberCalculator("+", color = Orange, onNumberClick = onNumberClick)
         }
-        LazyRow() {
-            item {
-                ItemNumberCalculator("", onNumberClick = onNumberClick)
-            }
-            item {
-                ItemNumberCalculator("0", onNumberClick = onNumberClick)
-            }
-            item {
-                ItemNumberCalculator(",", onNumberClick = onNumberClick)
-            }
-            item {
-                ItemNumberCalculator("=", color = Orange, onNumberClick = onNumberClick)
-            }
+        Row {
+            ItemNumberCalculator("", onNumberClick = onNumberClick)
+            ItemNumberCalculator("0", onNumberClick = onNumberClick)
+            ItemNumberCalculator(",", onNumberClick = onNumberClick)
+            ItemNumberCalculator("=", color = Orange, onNumberClick = onNumberClick)
         }
     }
 
