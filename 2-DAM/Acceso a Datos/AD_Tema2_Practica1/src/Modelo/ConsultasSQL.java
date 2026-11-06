@@ -28,7 +28,6 @@ public class ConsultasSQL {
                 String autor = rs.getString("autor");
                 int anio = rs.getInt("anio");
                 boolean disponible = rs.getBoolean("disponible");
-             
                 libros.add(new Libro(id, titulo, autor, anio, disponible));
             }
             return libros;

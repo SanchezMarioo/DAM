@@ -41,49 +41,4 @@ public class LibroDAO {
         }
         return libros;
     }
-    
-    //   SELECT * FROM libros WHERE titulo = '' OR '1'='1'
-    //   Devuelve TODOS los libros de la tabla, saltándose
-    //   el filtro por título.
-
-    public ArrayList<Libro> buscarPorTituloVulnerable(String titulo) throws SQLException {
-        ArrayList<Libro> libros = new ArrayList<>();
-        String sql = "SELECT * FROM libros WHERE titulo = '" + titulo + "'";
-
-        try (Connection connect = ConexionBD.connect(); Statement st = connect.createStatement(); ResultSet set = st.executeQuery(sql)) {
-
-            while (set.next()) {
-                libros.add(new Libro(
-                        set.getInt("id"),
-                        set.getString("titulo"),
-                        set.getString("autor"),
-                        set.getDate("fecha_publicacion"),
-                        set.getBoolean("disponible")
-                ));
-            }
-        }
-        return libros;
-    }
-
-    public ArrayList<Libro> buscarPorTituloNoVulnerable(String titulo) throws SQLException, SQLInjectionException {
-        ArrayList<Libro> libros = new ArrayList<>();
-        if(titulo.contains("\'") || titulo.contains("\"")){
-            throw new SQLInjectionException("No se puede meter comillas en los titulos");
-        }
-        String sql = "SELECT * FROM libros WHERE titulo = '" + titulo + "'";
-        
-        try (Connection connect = ConexionBD.connect(); Statement st = connect.createStatement(); ResultSet set = st.executeQuery(sql)) {
-
-            while (set.next()) {
-                libros.add(new Libro(
-                        set.getInt("id"),
-                        set.getString("titulo"),
-                        set.getString("autor"),
-                        set.getDate("fecha_publicacion"),
-                        set.getBoolean("disponible")
-                ));
-            }
-        }
-        return libros;
-    }
 }
