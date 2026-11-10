@@ -2,26 +2,36 @@ package com.example.enviomensajes
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.RoundedCorner
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat.startActivity
 import com.example.enviomensajes.ui.theme.EnvioMensajesTheme
@@ -31,7 +41,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            EnvioMensajesTheme {
+            EnvioMensajesTheme(usarTemaVerde = false) {
                 Activity(this@MainActivity)
             }
         }
@@ -39,23 +49,74 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Activity(activity: MainActivity, modifier : Modifier = Modifier){
-
-    var mensaje by remember { mutableStateOf("") }
-    Column(modifier.background(Color(0xFFFFB84D)).fillMaxSize(),
-        verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
-        Text("Enviar mensaje")
+fun Activity(activity: MainActivity, modifier: Modifier = Modifier) {
+    var mensaje by rememberSaveable { mutableStateOf("") }
+    Column(
+        modifier = modifier
+            .background(MaterialTheme.colorScheme.secondary)
+            .padding(16.dp)
+            .fillMaxSize(),
+//        verticalArrangement = Arrangement.SpaceAround,
+//        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         Spacer(Modifier.padding(16.dp))
-        TextField( value = mensaje, onValueChange = {
-            nuevoMensaje -> mensaje = nuevoMensaje
-        }, label = {Text("Mensaje")})
-        Button(onClick = {
-            val intent = Intent(activity, SegundaActivity::class.java)
-            intent.putExtra("mensaje", mensaje)
-            activity.startActivity(intent)
-          }, enabled = mensaje.isNotBlank()) {
+        Text(stringResource(R.string.actividad_principal))
+        Spacer(Modifier.padding(16.dp))
+        Row(
+            modifier = modifier
+                .background(MaterialTheme.colorScheme.primary, shape = RoundedCornerShape(16.dp))
+                .fillMaxWidth()
+
+                .padding(vertical = 16.dp, horizontal = 16.dp)
+                .border(
+                    width = 2.dp,
+                    color = MaterialTheme.colorScheme.primary,
+                    shape = RoundedCornerShape(16.dp)
+                )
+        ) {
+
+            Spacer(modifier.padding(4.dp))
+            Text(
+                stringResource(R.string.titulo_principal),
+                color = Color.White
+            )
+        }
+        Spacer(Modifier.padding(16.dp))
+        Column(
+            modifier
+                .fillMaxSize(),
+//            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            TextField(
+                shape = RoundedCornerShape(12.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp, vertical = 8.dp),
+                value = mensaje,
+                onValueChange = { nuevoMensaje ->
+                    mensaje = nuevoMensaje
+                },
+                label = { Text("Mensaje") })
+            Spacer(Modifier.padding(16.dp))
+            Button(
+                onClick = {
+                    val intent = Intent(activity, SegundaActivity::class.java)
+                    intent.putExtra("mensaje", mensaje)
+                    activity.startActivity(intent)
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp, vertical = 8.dp),
+                shape = RoundedCornerShape(16.dp),
+                border = BorderStroke(2.dp, Color.Transparent),
+                enabled = mensaje.isNotBlank()
+
+            ) {
             Text("Enviar mensaje")
         }
+        }
+
     }
 }
 

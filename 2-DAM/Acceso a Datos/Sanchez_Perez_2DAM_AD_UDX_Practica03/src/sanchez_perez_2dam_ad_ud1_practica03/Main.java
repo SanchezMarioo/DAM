@@ -50,9 +50,7 @@ public class Main {
         } while (opcion != 0);
     }
 
-    // ==========================================
-    // 1. GESTIÓN DE VUELOS
-    // ==========================================
+
     private static void menuVuelos() {
         int op;
         do {

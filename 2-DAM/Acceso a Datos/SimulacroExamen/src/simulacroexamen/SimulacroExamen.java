@@ -16,6 +16,18 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 /**
  *
@@ -28,29 +40,53 @@ public class SimulacroExamen {
      */
     static Scanner sc = new Scanner(System.in);
     static final String directorio = "equipos";
-    static final String archivo = "equipos.dat";
-    static final File archivoFile = new File(directorio, archivo);
+    static final String archivoBinario = "equipos.dat";
+    static final String archivoXML = "equipos.xml";
+    static final File archivoFile = new File(directorio, archivoBinario);
 
     public static void main(String[] args) {
         // TODO code application logic here
 
-        prepararDirectorioSimulacro(directorio, archivo);
+        prepararDirectorioSimulacro(directorio, archivoBinario);
         int opcion = -1;
         do {
             menuPrincipal();
-            System.out.println("Escoge una opcion: ");
-
-            opcion = sc.nextInt();
-            
+            opcion = leerEntero("Escoge una opcion: ");
             funcionalidadMenu(opcion);
 
-        } while (opcion != 3);
+        } while (opcion != 5);
     }
 
     static void menuPrincipal() {
         System.out.println("1. Leer archivo");
-        System.out.println("2. Escribir nuevo equipo: ");
-        System.out.println("3. Salir");
+        System.out.println("2. Escribir nuevo equipo ");
+        System.out.println("3. Buscar por numero de equipo ");
+        System.out.println("4. Convertir de binario a XML");
+        System.out.println("5. Salir");
+    }
+
+    static int leerEntero(String msg) {
+        System.out.println(msg);
+        while (true) {
+            try {
+                return Integer.parseInt(sc.nextLine().trim());
+            } catch (NumberFormatException e) {
+                System.out.print("Introduce un número entero válido: ");
+            }
+        }
+
+    }
+
+    static double leerDoble(String msg) {
+        System.out.println(msg);
+        while (true) {
+            try {
+                return Double.parseDouble(sc.nextLine().trim().replace(",", "."));
+            } catch (NumberFormatException e) {
+                System.out.print("Introduce un número entero válido: ");
+            }
+        }
+
     }
 
     static void prepararDirectorioSimulacro(String carpeta, String archivo) {
@@ -70,7 +106,7 @@ public class SimulacroExamen {
                 crearDatosPorDefecto(archivoFile.getPath());
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
-            } 
+            }
 
         }
     }
@@ -82,7 +118,7 @@ public class SimulacroExamen {
         Equipo equipo3 = new Equipo(5003, "Monitor", "Samsung", "A12", 159.00);
         Equipo[] equipos = {equipo1, equipo2, equipo3};
         try {
-             dos = new DataOutputStream(new FileOutputStream(ruta, true));
+            dos = new DataOutputStream(new FileOutputStream(ruta, true));
             for (Equipo equipo : equipos) {
                 dos.writeInt(equipo.getNumeroEquipo());
                 dos.writeUTF(equipo.getTipo());
@@ -90,12 +126,14 @@ public class SimulacroExamen {
                 dos.writeUTF(equipo.getAula());
                 dos.writeDouble(equipo.getPrecio());
             }
+            dos.flush();
         } catch (FileNotFoundException ex) {
             System.out.println(ex.getMessage());
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
-        } finally{
+        } finally {
             try {
+
                 dos.close();
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
@@ -115,8 +153,21 @@ public class SimulacroExamen {
             case 2 -> {
                 escribirExistiendo();
             }
-            case 3 ->
-                System.out.println("Saliendo del programa...");
+            case 3 -> {
+                int numeroEquipo = leerEntero("Dime el numero de equipo a buscar: ");
+
+                Equipo equipoBuscado = buscarPorNumeroEquipo(numeroEquipo);
+                if (equipoBuscado != null) {
+                    System.out.println(equipoBuscado);
+                } else {
+                    System.out.println("Equipo no encontrado");
+                }
+            }
+            case 4 -> {
+                // Leemos los equipos
+                ArrayList<Equipo> equipos = leerEquipoDAT();
+                convertirXML(equipos);
+            }
 
             default ->
                 System.out.println("Opcion no valida");
@@ -159,25 +210,25 @@ public class SimulacroExamen {
 
     private static void escribirExistiendo() {
         DataOutputStream dis = null;
-        System.out.println("Dime el numero de inventario: ");
-        int numeroInventario = sc.nextInt();
+
+        int numeroInventario = leerEntero("Dime el numero de inventario: ");
 
         if (numeroInventario <= 0) {
             System.out.println("El numero debe de ser mayor a 0");
 
         } else {
             if (!existeEquipo(numeroInventario)) {
-                sc.nextLine();
+
                 System.out.println("Dime el tipo de equipo: ");
                 String tipo = sc.nextLine();
                 System.out.println("Dime el marca de equipo: ");
                 String marca = sc.nextLine();
                 System.out.println("Dime el aula de equipo: ");
                 String aula = sc.nextLine();
-                System.out.println("Dime el precio de equipo: ");
-                double precio = sc.nextDouble();
+
+                double precio = leerDoble("Dime el precio de equipo: ");
                 try {
-                    dis  = new DataOutputStream(new FileOutputStream(archivoFile, true));
+                    dis = new DataOutputStream(new FileOutputStream(archivoFile, true));
                     dis.writeInt(numeroInventario);
                     dis.writeUTF(tipo);
                     dis.writeUTF(marca);
@@ -216,4 +267,73 @@ public class SimulacroExamen {
         return false;
     }
 
+    private static Equipo buscarPorNumeroEquipo(int numeroEquipo) {
+        // Reutilizamos el metodo 
+        ArrayList<Equipo> equipos = leerEquipoDAT();
+        for (Equipo equipo : equipos) {
+            if (equipo.getNumeroEquipo() == numeroEquipo) {
+                return equipo;
+            }
+        }
+        return null;
+    }
+
+    private static void convertirXML(ArrayList<Equipo> equipos) {
+        Document documento = null;
+        try {
+            documento = crearDocumento();
+        } catch (ParserConfigurationException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        Element elementoRaiz = documento.createElement("equipos");
+        documento.appendChild(elementoRaiz);
+     
+        for (Equipo equipo : equipos) {
+             Element elementoHijo = añadirElementoEquipo(documento, elementoRaiz, "equipo", "numeroEquipo", Integer.toString(equipo.getNumeroEquipo()));
+           añadirElemento(documento, elementoHijo, "numeroEquipo", Integer.toString(equipo.getNumeroEquipo()));
+            añadirElemento(documento, elementoHijo, "tipo", equipo.getTipo());
+            añadirElemento(documento, elementoHijo, "marca", equipo.getMarca());
+            añadirElemento(documento, elementoHijo, "aula", equipo.getAula());
+            añadirElemento(documento, elementoHijo, "precio", Double.toString(equipo.getPrecio()));
+        }
+        File xmlFile = new File(directorio, archivoXML);
+        try {
+            guardarDocumento(documento, xmlFile);
+        } catch (TransformerConfigurationException ex) {
+            System.out.println(ex.getMessage());
+        } catch (TransformerException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public static void añadirElemento(Document documento, Element elementoPadre, String nombreEtiqueta, String contenido) {
+        Element nuevoElemento = documento.createElement(nombreEtiqueta);
+        nuevoElemento.setTextContent(contenido);
+        elementoPadre.appendChild(nuevoElemento);
+    }
+
+    public static Element  añadirElementoEquipo(Document documento, Element elementoPadre, String nombreEtiqueta, String atributo, String contenidoAtributo) {
+        Element nuevoElemento = documento.createElement(nombreEtiqueta);
+        nuevoElemento.setAttribute(atributo, contenidoAtributo);
+        elementoPadre.appendChild(nuevoElemento);
+        return nuevoElemento;
+    }
+
+    public static Document crearDocumento() throws ParserConfigurationException {
+        DocumentBuilderFactory fabrica = DocumentBuilderFactory.newInstance();
+        DocumentBuilder constructor = fabrica.newDocumentBuilder();
+        return constructor.newDocument();
+    }
+
+    public static void guardarDocumento(Document documento, File fichero) throws TransformerConfigurationException, TransformerException {
+        TransformerFactory fabricaTransformador = TransformerFactory.newInstance();
+        Transformer transformador = fabricaTransformador.newTransformer();
+        transformador.setOutputProperty(OutputKeys.INDENT, "yes");
+        transformador.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+
+        DOMSource origen = new DOMSource(documento);
+        StreamResult destino = new StreamResult(fichero);
+        transformador.transform(origen, destino);
+    }
 }

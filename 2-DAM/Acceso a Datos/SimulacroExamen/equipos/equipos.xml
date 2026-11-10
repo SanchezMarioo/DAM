@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<equipos>
+    <equipo numeroEquipo="5001">
+        <numeroEquipo>5001</numeroEquipo>
+        <tipo>Portatil</tipo>
+        <marca>Lenovo</marca>
+        <aula>A12</aula>
+        <precio>649.5</precio>
+    </equipo>
+    <equipo numeroEquipo="5002">
+        <numeroEquipo>5002</numeroEquipo>
+        <tipo>Sobremesa</tipo>
+        <marca>HP</marca>
+        <aula>B03</aula>
+        <precio>789.5</precio>
+    </equipo>
+    <equipo numeroEquipo="5003">
+        <numeroEquipo>5003</numeroEquipo>
+        <tipo>Monitor</tipo>
+        <marca>Samsung</marca>
+        <aula>A12</aula>
+        <precio>159.0</precio>
+    </equipo>
+    <equipo numeroEquipo="12">
+        <numeroEquipo>12</numeroEquipo>
+        <tipo>A</tipo>
+        <marca>a</marca>
+        <aula>a</aula>
+        <precio>120.0</precio>
+    </equipo>
+    <equipo numeroEquipo="11">
+        <numeroEquipo>11</numeroEquipo>
+        <tipo>a</tipo>
+        <marca>a</marca>
+        <aula>a</aula>
+        <precio>2.4</precio>
+    </equipo>
+</equipos>
