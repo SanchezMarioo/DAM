@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Examen</string>
+    <string name="app_title">Habitos de Mario</string>
+    <string name="tasks_completed_title">Tareas completadas</string>
+    <string name="tasks_completed_count">%1$d de %2$d completados</string>
+    <string name="category_all">Todas</string>
+    <string name="category_salud">Salud</string>
+    <string name="category_estudio">Estudio</string>
+    <string name="category_hogar">Hogar</string>
+    <string name="category_ocio">Ocio</string>
+    <string name="new_habit_label">Nuevo hábito</string>
+    <string name="add_button">Añadir</string>
+    <string name="category_prefix">Categoría: %1$s</string>
+    <string name="delete_habit_desc">Eliminar %1$s</string>
+
+    <string name="sample_habit_1">Hacer ejercicio</string>
+    <string name="sample_habit_1_desc">Entrenamiento 45 min</string>
+    <string name="sample_habit_2">Estudiar Kotlin</string>
+    <string name="sample_habit_2_desc">Repasar Compose y Scaffold</string>
+    <string name="sample_habit_3">Limpiar la casa</string>
+    <string name="sample_habit_3_desc">Fregar platos y ordenar</string>
+    <string name="sample_habit_4">Leer un libro</string>
+    <string name="sample_habit_4_desc">Leer 20 páginas de novela</string>
+</resources>
