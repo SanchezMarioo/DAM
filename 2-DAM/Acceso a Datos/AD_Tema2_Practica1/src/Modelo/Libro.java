@@ -23,10 +23,11 @@ public class Libro {
         this.disponible = disponible;
     }
 
-    public Libro(int id, String titulo, int anio, boolean disponible) {
-        this(id, titulo, "", anio, disponible);
+    public Libro(String titulo, int anio) {
+        this.titulo = titulo;
+        this.anio = anio;
     }
-
+    
     public int getId() {
         return id;
     }
@@ -67,9 +68,13 @@ public class Libro {
         this.disponible = disponible;
     }
 
-    @Override
     public String toString() {
-        return "Libro{" + "id=" + id + ", titulo=" + titulo + (autor != null && !autor.isEmpty() ? ", autor=" + autor : "") + ", anio=" + anio + ", disponible=" + (disponible ? "Si" : "No") + '}';
+        return String.format("| %-6d | %-35.35s | %-25.25s | %-6d | %-12s |",
+                id,
+                titulo,
+                autor,
+                anio,
+                disponible ? "Disponible" : "Prestado");
     }
     
 }
