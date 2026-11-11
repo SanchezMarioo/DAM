@@ -13,23 +13,20 @@ import androidx.compose.ui.platform.LocalContext
 
 private val TemaNaranja = lightColorScheme(
     primary = NaranjaPrincipal,
-    secondary = NaranjaClaro,
-    background = Blanco,
-    surface = Blanco,
     onPrimary = Blanco,
+    secondary = NaranjaClaro,
     onBackground = TextoOscuro,
+    surface = NaranjaClaro,
     onSurface = TextoOscuro
 )
 
-// 2. Esquema para la segunda Activity (Verde)
 private val TemaVerde = lightColorScheme(
     primary = VerdePrincipal,
-    secondary = VerdeClaro,
-    background = Blanco,
-    surface = Blanco,
     onPrimary = Blanco,
+    secondary = VerdeClaro,
     onBackground = TextoOscuro,
-    onSurface = TextoOscuro
+    surface = VerdeClaro,
+    onSurface = TextoOscuro,
 )
 @Composable
 fun EnvioMensajesTheme(
