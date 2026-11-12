@@ -41,7 +41,12 @@ public class Main {
         }
         return lineas;
     }
+    public static void sumarYAnexarTotal(String ruta) {
+        ArrayList<String> lineas  = leerFichero(new File(ruta));
+        for(linea : lineas){
 
+        }
+    }
     static void escribirFichero(String suma, File archivoDestino) {
         try (BufferedWriter escritor = new BufferedWriter(new FileWriter(archivoDestino))) {
 
@@ -52,9 +57,4 @@ public class Main {
         }
     }
 
-    static void ejercicio2(File origen, File destino) {
-        ArrayList<String> lineas = leerFichero(origen);
-        escribirFichero(, lineas,destino);
-
-    }
 }

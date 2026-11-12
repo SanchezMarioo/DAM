@@ -135,7 +135,9 @@ fun PantallaPrincipal(activity: MainActivity, modifier: Modifier = Modifier) {
                 Spacer(Modifier.padding(8.dp))
                 Button(
                     onClick = {
-                        val intent = Intent(activity, SegundaActivity::class.java)
+                        val intent =
+                            Intent(activity,
+                                SegundaActivity::class.java)
                         intent.putExtra(EXTRA_MENSAJE, mensaje)
                         activity.startActivity(intent)
                     },
