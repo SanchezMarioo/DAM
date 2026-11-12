@@ -10,12 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d882d88-051b-4baa-8e24-c7f219226945" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../../.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../.idea/DAM.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../codelab-android-compose" beforeDir="false" afterPath="$PROJECT_DIR$/../codelab-android-compose" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../SGE/Mi-primer-proyecto/buscaEntero.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../SGE/Mi-primer-proyecto/cadenasYenteros.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../SGE/Mi-primer-proyecto/tablaImpar.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Chat/app/src/main/java/com/example/chat/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../Chat/app/src/main/java/com/example/chat/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../codelab-android-compose" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SGE/Mi-primer-proyecto/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../SGE/Mi-primer-proyecto/database.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,9 +123,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
       <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
-      <method v="2">
-        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-      </method>
+      <method v="2" />
     </configuration>
   </component>
   <component name="TaskManager">
