@@ -61,7 +61,7 @@ public class Ventana extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(LblPeticion)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fieldName, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE))
+                        .addComponent(fieldName, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblRes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -85,7 +85,7 @@ public class Ventana extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaludoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaludoActionPerformed
-       labelName.setText(fieldName.getName());
+       labelName.setText("Hola! " + fieldName.getText());
     }//GEN-LAST:event_btnSaludoActionPerformed
 
     /**

@@ -49,15 +49,28 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             EnvioMensajesTheme {
-                PantallaPrincipal(this@MainActivity)
+                PantallaPrincipal({ mensaje ->
+                    abrirSegundaActivity(mensaje)
+                }
+                )
             }
         }
+    }
+
+    private fun abrirSegundaActivity(mensaje: String) {
+        val intent = Intent(this, SegundaActivity::class.java)
+        intent.putExtra(EXTRA_MENSAJE, mensaje)
+        this.startActivity(intent)
+
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PantallaPrincipal(activity: MainActivity, modifier: Modifier = Modifier) {
+fun PantallaPrincipal(
+    onEnviar: (String) -> Unit,
+    modifier: Modifier = Modifier
+) {
     var mensaje by rememberSaveable { mutableStateOf("") }
     val mensajeValido = mensaje.isNotBlank() && mensaje.length < 100
     Scaffold(topBar = {
@@ -135,11 +148,8 @@ fun PantallaPrincipal(activity: MainActivity, modifier: Modifier = Modifier) {
                 Spacer(Modifier.padding(8.dp))
                 Button(
                     onClick = {
-                        val intent =
-                            Intent(activity,
-                                SegundaActivity::class.java)
-                        intent.putExtra(EXTRA_MENSAJE, mensaje)
-                        activity.startActivity(intent)
+                        onEnviar(mensaje)
+
                     },
                     modifier = Modifier
                         .fillMaxWidth()
@@ -162,6 +172,9 @@ fun PantallaPrincipal(activity: MainActivity, modifier: Modifier = Modifier) {
         }
     }
 }
+
+
+
 
 
 

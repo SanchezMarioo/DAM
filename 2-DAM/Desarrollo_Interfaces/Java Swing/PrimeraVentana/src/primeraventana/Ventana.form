@@ -30,7 +30,7 @@
                   <Group type="102" attributes="0">
                       <Component id="LblPeticion" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="fieldName" pref="152" max="32767" attributes="0"/>
+                      <Component id="fieldName" pref="262" max="32767" attributes="0"/>
                   </Group>
                   <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
                   <Component id="lblRes" alignment="0" max="32767" attributes="0"/>

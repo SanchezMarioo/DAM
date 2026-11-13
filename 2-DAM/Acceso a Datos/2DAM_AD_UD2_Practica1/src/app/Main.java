@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package pkg2dam_ad_ud2_practica1;
+package app;
 
 import Controlador.ControladorEmpresa;
 import Vista.VistaConsola;

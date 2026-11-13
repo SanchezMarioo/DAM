@@ -1,5 +1,7 @@
 package com.example.formulariovalidacion
 
+import android.R.attr.label
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -8,10 +10,13 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.input.InputTransformation.Companion.keyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
@@ -27,6 +32,7 @@ import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.OffsetMapping
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TransformedText
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
@@ -41,6 +47,12 @@ class MainActivity : ComponentActivity() {
                 PantallaPrincipal(activity = this@MainActivity)
             }
         }
+    }
+    fun cambiarActivity(name: String, esAdmin: Boolean) {
+        val intent = Intent(this, SegundaActividad::class.java)
+        intent.putExtra("nombre", name)
+        intent.putExtra("admin", esAdmin)
+        startActivity(intent)
     }
 }
 
@@ -72,29 +84,37 @@ fun PantallaPrincipal(modifier: Modifier = Modifier, activity: MainActivity) {
         CampoFormulario(
             city, { city = it }, "Ciudad", onErrorCity
         )
-        Switch(
-            checked = esAdmin,
-            onCheckedChange = {
-                esAdmin = it
-            }
-        )
+        Spacer(Modifier.padding(16.dp))
+
+        Row(
+            modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceAround,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text("Admin?: ")
+            Switch(
+                checked = esAdmin,
+                onCheckedChange = {
+                    esAdmin = it
+                }
+            )
+        }
+        Spacer(Modifier.padding(16.dp))
+
         Button(
             onClick = {
-
                 val formularioEsValido = esValido(
                     user = user,
-                    onErrorUser = { onErrorUser = it }, // Pasamos la acción de modificar el estado
+                    onErrorUser = { onErrorUser = it },
                     password = password,
                     onErrorPassword = { onErrorPasswd = it },
                     ciudad = city,
                     onErrorCiudad = { onErrorCity = it },
                     ciudades = ciudades
                 )
-                Log.d("FORM", "$formularioEsValido")
-                if(formularioEsValido){
-                    cambiarActivity(user,activity,esAdmin)
+                if (formularioEsValido) {
+                    activity.cambiarActivity(user, esAdmin)
                 }
-                Log.d("ADMIN", "$esAdmin")
             },
         ) {
             Text("Comprobar")
@@ -103,12 +123,7 @@ fun PantallaPrincipal(modifier: Modifier = Modifier, activity: MainActivity) {
     }
 }
 
-fun cambiarActivity(name: String, activity: MainActivity, esAdmin : Boolean) {
-    val intent = Intent(activity, SegundaActividad::class.java)
-    intent.putExtra("nombre", name)
-    intent.putExtra("admin", esAdmin)
-    activity.startActivity(intent)
-}
+
 
 fun esValido(
     user: String,
@@ -120,12 +135,17 @@ fun esValido(
     ciudades: Array<String>
 ): Boolean {
     val comprobacionUsuario = user.trim().length < 6
-    val comprobacionPasswd= password.length != 4
+    var comprobacionPasswd = password.length != 4
+    for(i in password){
+        if(!i.isDigit()){
+            comprobacionPasswd = true
+        }
+    }
     val comprobacionCiudad = ciudades.indexOf(ciudad) == -1
     onErrorUser(comprobacionUsuario)
     onErrorPassword(comprobacionPasswd)
     onErrorCiudad(comprobacionCiudad)
-    if(!comprobacionUsuario && !comprobacionPasswd && !comprobacionCiudad){
+    if (!comprobacionUsuario && !comprobacionPasswd && !comprobacionCiudad) {
         return true
     }
     return false
@@ -133,7 +153,10 @@ fun esValido(
 
 @Composable
 fun CampoFormulario(
-    valor: String, onValueCambiar: (String) -> Unit, etiqueta: String, error: Boolean
+    valor: String,
+    onValueCambiar: (String) -> Unit,
+    etiqueta: String,
+    error: Boolean
 ) {
     TextField(
         value = valor,
@@ -145,15 +168,17 @@ fun CampoFormulario(
 
 @Composable
 fun CampoFormularioPasswd(
-    valor: String, onValueCambiar: (String) -> Unit, etiqueta: String, error: Boolean
+    valor: String, onValueCambiar: (String) -> Unit,
+    etiqueta: String,
+    error: Boolean
 ) {
     var valorNuevo = valor
     TextField(
-        value = valorNuevo.take(4),
+        value = valorNuevo,
         onValueChange = { nuevoTexto ->
             onValueCambiar(nuevoTexto.take(4))
         },
-        visualTransformation = VisualTransformation({ cambiarContraseña(valor) }),
+        visualTransformation = PasswordVisualTransformation('*'),
         isError = error,
 
         label = { Text(etiqueta) },
@@ -163,13 +188,5 @@ fun CampoFormularioPasswd(
 
 
 }
-
-fun cambiarContraseña(text: String): TransformedText {
-    return TransformedText(
-        AnnotatedString("*".repeat(text.length)),
-        OffsetMapping.Identity,
-    )
-}
-
 
 

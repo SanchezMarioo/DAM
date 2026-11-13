@@ -19,8 +19,8 @@ private val TemaAdmin = darkColorScheme(
     onPrimary = Color.White,
     onSecondary = Color.White,
     onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
+    onBackground = Color.White,
+    onSurface = Color.White,
 )
 
 private val TemaUser = lightColorScheme(
@@ -29,8 +29,8 @@ private val TemaUser = lightColorScheme(
     onPrimary = Color.White,
     onSecondary = Color.White,
     onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
+    onBackground = Color.White,
+    onSurface = Color.White,
 
 )
 
@@ -39,8 +39,6 @@ fun FormularioValidacionTheme(
     admin: Boolean = true,
     content: @Composable () -> Unit
 ) {
-
-
     MaterialTheme(
         colorScheme = if(admin){
             TemaAdmin

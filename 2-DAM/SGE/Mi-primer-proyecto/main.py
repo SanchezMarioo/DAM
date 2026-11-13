@@ -1,2 +1,5 @@
-suma = float(2+2);
-print(suma)
+
+
+c1 = "Hola"
+c2 = "ol"
+c1 in c2

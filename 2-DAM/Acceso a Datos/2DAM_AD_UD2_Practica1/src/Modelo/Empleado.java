@@ -28,6 +28,11 @@ public class Empleado {
         this.comision = comision;
         this.idDepartamento = idDepartamento;
     }
+
+    @Override
+    public String toString() {
+        return "Empleado{" + "dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos + ", puesto=" + puesto + ", fechaAlta=" + fechaAlta + ", salario=" + salario + ", comision=" + comision + ", idDepartamento=" + idDepartamento + '}';
+    }
     
     
 }
