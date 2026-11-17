@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Codigo Secreto</string>
+    <string name="lbl_campo_txt">Introduce aqui su texto\n</string>
+    <string name="segunda_pantalla">Segunda Pantalla\n</string>
+    <string name="tercera_pantalla">Tercera Pantalla\n</string>
+</resources>
