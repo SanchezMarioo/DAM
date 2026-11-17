@@ -24,7 +24,6 @@ fun cambiarPantalla(valor: String, onChangeValue: (EstadosPantalla) -> Unit) {
         "1111" -> onChangeValue(EstadosPantalla.PANTALLASEGUNDA)
         else -> onChangeValue(EstadosPantalla.SIN_CAMBIO)
     }
-    Log.d("Estado", onChangeValue.toString())
 }
 
 fun cambiarTextoUnicode(texto: String) : String {
@@ -33,7 +32,6 @@ fun cambiarTextoUnicode(texto: String) : String {
         var codigoUnicode : Int = letra.toInt()
         codigoUnicode += 1
         var codigo : Char = codigoUnicode.toChar()
-        Log.d("Cadena", "${codigoUnicode.toString()}")
         textoCambiado += codigo
     }
     return textoCambiado
