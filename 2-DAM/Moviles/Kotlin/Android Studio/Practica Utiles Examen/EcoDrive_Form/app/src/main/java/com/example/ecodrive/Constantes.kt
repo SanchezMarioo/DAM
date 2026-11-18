@@ -1,0 +1,9 @@
+package com.example.ecodrive
+
+val TURISMO_PRECIO = 35
+val SUV_PRECIO = 55
+val DEPORTIVO_PRECIO = 80
+val ELECTRICO_PRECIO = 45
+val CONDUCTOR_ADICIONAL_PRECIO = 8
+val SEGURO_TODO_RIESGO = 25
+val REGEXP_DNI = Regex("\\d{8}[A-Z]")

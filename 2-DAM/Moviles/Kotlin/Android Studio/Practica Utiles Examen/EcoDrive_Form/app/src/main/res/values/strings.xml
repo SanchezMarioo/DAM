@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">EcoDrive</string>
+    <string-array name="vehiculos">
+        <item>Turismo</item>
+        <item>SUV</item>
+        <item>Deportivo</item>
+        <item>Electrico</item>
+    </string-array>
+</resources>

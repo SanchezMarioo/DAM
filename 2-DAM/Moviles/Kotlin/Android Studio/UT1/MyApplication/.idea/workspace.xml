@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="68d2a613-287e-495c-8f75-adff85f8de8d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../../2DAM_AD_UD2_Practica2/build.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../2DAM_AD_UD2_Practica2/manifest.mf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../2DAM_AD_UD2_Practica2/nbproject/build-impl.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../2DAM_AD_UD2_Practica2/nbproject/genfiles.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../2DAM_AD_UD2_Practica2/nbproject/project.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../2DAM_AD_UD2_Practica2/nbproject/project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../2DAM_AD_UD2_Practica2/src/ConexionBD/ConexionBD.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../2DAM_AD_UD2_Practica2/src/Controlador/ControladorEmpresa.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../2DAM_AD_UD2_Practica2/src/Modelo/Empleado.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../2DAM_AD_UD2_Practica2/src/Vista/VistaConsola.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../2DAM_AD_UD2_Practica2/src/app/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../2DAM_AD_UD2_Practica2/src/dao/EmpleadoDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Acceso a Datos/Tema 1/Sanchez_Perez_2DAM_AD_UDX_Practica03/nbproject/private/private.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../Acceso a Datos/Tema 1/Sanchez_Perez_2DAM_AD_UDX_Practica03/nbproject/private/private.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Acceso a Datos/Tema 1/Sanchez_Perez_2DAM_AD_UDX_Practica03/nbproject/private/private.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../Acceso a Datos/Tema 1/Sanchez_Perez_2DAM_AD_UDX_Practica03/nbproject/private/private.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Acceso a Datos/Tema 1/SimulacroExamen/nbproject/private/private.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../Acceso a Datos/Tema 1/SimulacroExamen/nbproject/private/private.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CalcSimple.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Codigo_Secreto.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EnvioMensajes/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../EnvioMensajes/.idea/caches/deviceStreaming.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EnvioMensajes/.idea/deploymentTargetSelector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../EnvioMensajes/.idea/deploymentTargetSelector.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EnvioMensajes/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../EnvioMensajes/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Formulario.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FormularioValidacion/.idea/deploymentTargetSelector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../FormularioValidacion/.idea/deploymentTargetSelector.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../../.." />
+  </component>
+  <component name="KmpPackageLockUpdaterState"><![CDATA[{
+  "jsModulesKotlinGradlePluginVersion": {},
+  "wasmModulesKotlinGradlePluginVersion": {}
+}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3LaUaprVQn6D3YYShUNbGXtZ5Vp" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "CidrDebugProfileConversion": "true",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Proyectos_Web/DAM/2-DAM/Moviles/Kotlin/Android Studio/MyApplication"
+  }
+}]]></component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="68d2a613-287e-495c-8f75-adff85f8de8d" name="Changes" comment="" />
+      <created>1793691739189</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1793691739189</updated>
+    </task>
+    <servers />
+  </component>
+</project>
