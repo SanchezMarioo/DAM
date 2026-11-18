@@ -29,10 +29,9 @@ fun cambiarPantalla(valor: String, onChangeValue: (EstadosPantalla) -> Unit) {
 fun cambiarTextoUnicode(texto: String) : String {
     var textoCambiado : String = ""
     for (letra in texto) {
-        var codigoUnicode : Int = letra.toInt()
+        var codigoUnicode : Char = letra.toChar()
         codigoUnicode += 1
-        var codigo : Char = codigoUnicode.toChar()
-        textoCambiado += codigo
+        textoCambiado += codigoUnicode
     }
     return textoCambiado
 }

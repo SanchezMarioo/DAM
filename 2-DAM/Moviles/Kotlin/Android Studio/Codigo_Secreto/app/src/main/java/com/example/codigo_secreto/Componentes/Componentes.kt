@@ -59,11 +59,11 @@ fun InputTexto(
 @Composable
 fun TecladoNumero(
     codigo: String,
-    textoInput : String,
+    textoInput: String,
     onDescrifadoChange: (String) -> Unit,
     onCifradoChange: (String) -> Unit,
     onPantallaChange: (EstadosPantalla) -> Unit,
-    onTextoChange : (String) -> Unit
+    onTextoChange: (String) -> Unit
 ) {
     val numeros = arrayOf(
         intArrayOf(1, 2, 3),
@@ -77,7 +77,6 @@ fun TecladoNumero(
             if (codigoNuevo.length == 4 && textoInput.trim().isEmpty()) {
                 onDescrifadoChange("")
                 onCifradoChange("----")
-//                onPantallaChange(EstadosPantalla.SIN_CAMBIO)
             } else {
                 onDescrifadoChange(codigoNuevo)
                 actualizarIndicador(codigoNuevo, onCifradoChange)
@@ -108,7 +107,7 @@ fun TecladoNumero(
     }
     Column() {
         for (i in 0..2) {
-            Row(horizontalArrangement = Arrangement.SpaceBetween) {
+            Row() {
                 for (j in 0..2) {
                     BotonTeclado(
                         numero = numeros[i][j].toString(),
@@ -130,17 +129,15 @@ fun BotonTeclado(numero: String, onClick: () -> Unit) {
     Button(
         onClick = onClick,
         modifier = Modifier
-            .size(80.dp)
+            .size(90.dp)
             .padding(5.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = BotonNumerico,
             contentColor = TextoPrincipal
         ),
-
-
-    )
+        )
     {
-        Text(numero, fontSize = 14.sp)
+        Text(numero, fontSize = 18.sp)
     }
 }
 

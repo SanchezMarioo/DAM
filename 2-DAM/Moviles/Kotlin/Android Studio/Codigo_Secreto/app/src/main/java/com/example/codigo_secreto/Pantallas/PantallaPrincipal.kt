@@ -52,7 +52,6 @@ fun PantallaPrincipal(
                     onTextoLibre(it)
                 }, error
             )
-            Log.d("Espacio", textoLibre)
             Spacer(Modifier.padding(16.dp))
             Text(
                 text = cifrasDescrifadas,

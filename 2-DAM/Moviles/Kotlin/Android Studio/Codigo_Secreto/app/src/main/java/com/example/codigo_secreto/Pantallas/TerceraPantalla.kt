@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -29,6 +30,8 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.codigo_secreto.Componentes.AppTopBar
 import com.example.codigo_secreto.Logica.cambiarTextoUnicode
 import com.example.codigo_secreto.R
+import com.example.codigo_secreto.ui.theme.FondoPrincipal
+import com.example.codigo_secreto.ui.theme.TextoPrincipal
 
 class TerceraPantalla : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,13 +53,14 @@ fun PantallaTercera(intent: Intent, onClick: () -> Unit) {
         Column(
             Modifier
                 .padding(innerPadding)
+                .background(FondoPrincipal)
                 .fillMaxSize(),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
                 text = mensajeTransformado,
-                color = Color.Black,
+                color = TextoPrincipal,
                 fontSize = 24.sp,
                 textAlign = TextAlign.Center
             )
