@@ -4,6 +4,7 @@
  */
 package Modelo;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -11,16 +12,16 @@ import java.util.Date;
  * @author mario.sanper.2
  */
 public class Empleado {
-        private String dni;
+    private String dni;
     private String nombre;
     private String apellidos;
     private String puesto;
-    private Date fechaAlta;
+    private String fechaAlta;
     private double salario;
     private double comision;
     private int idDepartamento;
 
-    public Empleado(String dni, String nombre, String apellidos, String puesto, Date fechaAlta, double salario, double comision, int idDepartamento) {
+    public Empleado(String dni, String nombre, String apellidos, String puesto, String fechaAlta, double salario, double comision, int idDepartamento) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -63,11 +64,11 @@ public class Empleado {
         this.puesto = puesto;
     }
 
-    public Date getFechaAlta() {
+    public String getFechaAlta() {
         return fechaAlta;
     }
 
-    public void setFechaAlta(Date fechaAlta) {
+    public void setFechaAlta(String fechaAlta) {
         this.fechaAlta = fechaAlta;
     }
 
@@ -95,9 +96,10 @@ public class Empleado {
         this.idDepartamento = idDepartamento;
     }
 
-       
     @Override
     public String toString() {
         return "Empleado{" + "dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos + ", puesto=" + puesto + ", fechaAlta=" + fechaAlta + ", salario=" + salario + ", comision=" + comision + ", idDepartamento=" + idDepartamento + '}';
     }
+    
+
 }
