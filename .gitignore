@@ -35,5 +35,18 @@
 /2-DAM/2DAM_AD_UD2_Practica2/nbproject/private/
 /2-DAM/2DAM_AD_UD2_Practica2/build/
 /2-DAM/Acceso a Datos/Tema 2/2DAM_AD_UD2_Practica2/nbproject/private/
-/2-DAM/Acceso a Datos/Tema 2/2DAM_AD_UD2_Practica2/dist/
 /2-DAM/Acceso a Datos/Tema 2/2DAM_AD_UD2_Practica2/build/
+/2-DAM/Acceso a Datos/Tema 2/2DAM_AD_UD2_Practica2/dist/
+# Android / Gradle / Kotlin
+**/build/
+**/.gradle/
+**/.idea/
+*.iml
+**/local.properties
+**/*.apk
+**/*.aab
+**/*.class
+
+# Sistema operativo
+.DS_Store
+Thumbs.db

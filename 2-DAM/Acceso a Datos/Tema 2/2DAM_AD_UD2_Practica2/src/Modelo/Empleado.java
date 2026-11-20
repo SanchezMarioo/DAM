@@ -4,6 +4,7 @@
  */
 package Modelo;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -11,7 +12,7 @@ import java.util.Date;
  * @author mario.sanper.2
  */
 public class Empleado {
-        private String dni;
+    private String dni;
     private String nombre;
     private String apellidos;
     private String puesto;
@@ -99,8 +100,4 @@ public class Empleado {
     public String toString() {
         return "Empleado{" + "dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos + ", puesto=" + puesto + ", fechaAlta=" + fechaAlta + ", salario=" + salario + ", comision=" + comision + ", idDepartamento=" + idDepartamento + '}';
     }
-
-    
-
-    
 }
