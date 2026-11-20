@@ -4,6 +4,10 @@
  */
 package app;
 
+import Controlador.ControladorEmpresa;
+import Vista.VistaConsola;
+import dao.EmpleadoDAO;
+
 /**
  *
  * @author mario.sanper.2
@@ -15,6 +19,10 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        VistaConsola vista = new VistaConsola();
+        EmpleadoDAO dao = new EmpleadoDAO();
+        ControladorEmpresa empresa = new ControladorEmpresa(vista, dao);
+        empresa.iniciar();
     }
     
 }

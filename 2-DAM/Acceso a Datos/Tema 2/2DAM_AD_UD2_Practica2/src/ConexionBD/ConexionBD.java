@@ -18,7 +18,7 @@ public class ConexionBD {
     public static Connection conectar() throws SQLException {
         String url = "jdbc:mysql://localhost:3306/empresa";
         String user = "root";
-        String pass = "1234";
+        String pass = "";
         return DriverManager.getConnection(url, user, pass);
     }
     
