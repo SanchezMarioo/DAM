@@ -46,7 +46,7 @@ public class EmpleadoDAO {
                             rs.getString("puesto"),
                             rs.getString("fecha_alta"),
                             rs.getDouble("salario"),
-                            rs.getObject("comision", Double.class),
+                            rs.getDouble("comision"),
                             rs.getInt("id_departamento")
                     );
                 }

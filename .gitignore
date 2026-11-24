@@ -50,3 +50,7 @@
 # Sistema operativo
 .DS_Store
 Thumbs.db
+/2-DAM/CheckBox_RadioButton/nbproject/private/
+/2-DAM/CheckBox_RadioButton/dist/
+/2-DAM/SpinnerSlider/nbproject/private/
+/2-DAM/SpinnerSlider/dist/
