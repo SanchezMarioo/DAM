@@ -4,6 +4,7 @@
  */
 package Checkbox;
 
+import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
@@ -184,16 +185,11 @@ public class Checkbox extends javax.swing.JFrame {
             .addGroup(cbxPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(cbxPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(cbxPanelLayout.createSequentialGroup()
-                        .addGroup(cbxPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBoxVino)
-                            .addComponent(jCheckBoxPan))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(cbxPanelLayout.createSequentialGroup()
-                        .addGroup(cbxPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBoxHabano)
-                            .addComponent(jCheckBoxCafe))
-                        .addContainerGap(20, Short.MAX_VALUE))))
+                    .addComponent(jCheckBoxVino)
+                    .addComponent(jCheckBoxPan)
+                    .addComponent(jCheckBoxHabano)
+                    .addComponent(jCheckBoxCafe))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         cbxPanelLayout.setVerticalGroup(
             cbxPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -299,8 +295,9 @@ public class Checkbox extends javax.swing.JFrame {
             JCheckBox rdb = (JCheckBox) c1;
             if (rdb.isSelected()) {
                 texto += rdb.getText() + " \n";
+                
             }
-
+            
         }
         lblNone.setText(texto);
     }//GEN-LAST:event_btnActionPerformed
